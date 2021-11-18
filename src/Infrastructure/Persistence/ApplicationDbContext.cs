@@ -2,7 +2,6 @@
 using lighthouse_construction_progress_api.Application.Common.Interfaces;
 using lighthouse_construction_progress_api.Domain.Common;
 using lighthouse_construction_progress_api.Domain.Entities;
-using lighthouse_construction_progress_api.Infrastructure.Identity;
 using Duende.IdentityServer.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +9,7 @@ using Microsoft.Extensions.Options;
 
 namespace lighthouse_construction_progress_api.Infrastructure.Persistence;
 
-public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, IApplicationDbContext
+public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     private readonly ICurrentUserService _currentUserService;
     private readonly IDateTime _dateTime;
@@ -18,10 +17,9 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
 
     public ApplicationDbContext(
         DbContextOptions<ApplicationDbContext> options,
-        IOptions<OperationalStoreOptions> operationalStoreOptions,
         ICurrentUserService currentUserService,
         IDomainEventService domainEventService,
-        IDateTime dateTime) : base(options, operationalStoreOptions)
+        IDateTime dateTime) : base(options)
     {
         _currentUserService = currentUserService;
         _domainEventService = domainEventService;

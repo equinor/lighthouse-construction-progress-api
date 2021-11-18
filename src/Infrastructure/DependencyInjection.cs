@@ -1,5 +1,4 @@
 ﻿using lighthouse_construction_progress_api.Application.Common.Interfaces;
-using lighthouse_construction_progress_api.Infrastructure.Identity;
 using lighthouse_construction_progress_api.Infrastructure.Persistence;
 using lighthouse_construction_progress_api.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
@@ -31,16 +30,13 @@ public static class DependencyInjection
 
         services.AddScoped<IDomainEventService, DomainEventService>();
 
-        services
-            .AddDefaultIdentity<ApplicationUser>()
-            .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>();
+        //services
+        //    .AddDefaultIdentity<ApplicationUser>()
+        //    .AddRoles<IdentityRole>()
+        //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
-        services.AddIdentityServer()
-            .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
         services.AddTransient<IDateTime, DateTimeService>();
-        services.AddTransient<IIdentityService, IdentityService>();
 
         services.AddAuthentication()
             .AddIdentityServerJwt();

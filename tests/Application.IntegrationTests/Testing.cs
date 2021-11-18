@@ -1,5 +1,4 @@
 ﻿using lighthouse_construction_progress_api.Application.Common.Interfaces;
-using lighthouse_construction_progress_api.Infrastructure.Identity;
 using lighthouse_construction_progress_api.Infrastructure.Persistence;
 using lighthouse_construction_progress_api.WebApi;
 using MediatR;
@@ -86,49 +85,49 @@ public class Testing
         return await mediator.Send(request);
     }
 
-    public static async Task<string> RunAsDefaultUserAsync()
-    {
-        return await RunAsUserAsync("test@local", "Testing1234!", Array.Empty<string>());
-    }
+    //public static async Task<string> RunAsDefaultUserAsync()
+    //{
+    //    return await RunAsUserAsync("test@local", "Testing1234!", Array.Empty<string>());
+    //}
 
-    public static async Task<string> RunAsAdministratorAsync()
-    {
-        return await RunAsUserAsync("administrator@local", "Administrator1234!", new[] { "Administrator" });
-    }
+    //public static async Task<string> RunAsAdministratorAsync()
+    //{
+    //    return await RunAsUserAsync("administrator@local", "Administrator1234!", new[] { "Administrator" });
+    //}
 
-    public static async Task<string> RunAsUserAsync(string userName, string password, string[] roles)
-    {
-        using var scope = _scopeFactory.CreateScope();
+    //public static async Task<string> RunAsUserAsync(string userName, string password, string[] roles)
+    //{
+    //    using var scope = _scopeFactory.CreateScope();
 
-        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+    //    //var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-        var user = new ApplicationUser { UserName = userName, Email = userName };
+    //    //var user = new ApplicationUser { UserName = userName, Email = userName };
 
-        var result = await userManager.CreateAsync(user, password);
+    //    //var result = await userManager.CreateAsync(user, password);
 
-        if (roles.Any())
-        {
-            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    //    if (roles.Any())
+    //    {
+    //        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-            foreach (var role in roles)
-            {
-                await roleManager.CreateAsync(new IdentityRole(role));
-            }
+    //        foreach (var role in roles)
+    //        {
+    //            await roleManager.CreateAsync(new IdentityRole(role));
+    //        }
 
-            await userManager.AddToRolesAsync(user, roles);
-        }
+    //        await userManager.AddToRolesAsync(user, roles);
+    //    }
 
-        if (result.Succeeded)
-        {
-            _currentUserId = user.Id;
+    //    if (result.Succeeded)
+    //    {
+    //        _currentUserId = user.Id;
 
-            return _currentUserId;
-        }
+    //        return _currentUserId;
+    //    }
 
-        var errors = string.Join(Environment.NewLine, result.ToApplicationResult().Errors);
+    //    var errors = string.Join(Environment.NewLine, result.ToApplicationResult().Errors);
 
-        throw new Exception($"Unable to create {userName}.{Environment.NewLine}{errors}");
-    }
+    //    throw new Exception($"Unable to create {userName}.{Environment.NewLine}{errors}");
+    //}
 
     public static async Task ResetState()
     {

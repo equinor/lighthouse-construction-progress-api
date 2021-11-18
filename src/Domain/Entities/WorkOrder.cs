@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace lighthouse_construction_progress_api.Domain.Entities;
+﻿namespace lighthouse_construction_progress_api.Domain.Entities;
 
 public class WorkOrder
 {

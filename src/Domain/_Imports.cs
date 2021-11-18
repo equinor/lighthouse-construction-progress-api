@@ -1,5 +1,2 @@
 ﻿global using lighthouse_construction_progress_api.Domain.Common;
 global using lighthouse_construction_progress_api.Domain.Entities;
-global using lighthouse_construction_progress_api.Domain.Enums;
-global using lighthouse_construction_progress_api.Domain.Exceptions;
-global using lighthouse_construction_progress_api.Domain.ValueObjects;
