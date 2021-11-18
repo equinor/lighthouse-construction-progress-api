@@ -1,10 +1,10 @@
+using FluentValidation.AspNetCore;
 using lighthouse_construction_progress_api.Application;
 using lighthouse_construction_progress_api.Application.Common.Interfaces;
 using lighthouse_construction_progress_api.Infrastructure;
 using lighthouse_construction_progress_api.Infrastructure.Persistence;
 using lighthouse_construction_progress_api.WebApi.Filters;
 using lighthouse_construction_progress_api.WebApi.Services;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using NSwag;
 using NSwag.Generation.Processors.Security;
@@ -33,23 +33,24 @@ public class Startup
             .AddDbContextCheck<ApplicationDbContext>();
 
         services.AddControllersWithViews(options =>
-            options.Filters.Add<ApiExceptionFilterAttribute>())
-                .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
+                options.Filters.Add<ApiExceptionFilterAttribute>())
+            .AddFluentValidation(x => x.AutomaticValidationEnabled = false);
 
         // Customise default API behaviour
-        services.Configure<ApiBehaviorOptions>(options => 
+        services.Configure<ApiBehaviorOptions>(options =>
             options.SuppressModelStateInvalidFilter = true);
 
         services.AddOpenApiDocument(configure =>
         {
             configure.Title = "lighthouse_construction_progress_api API";
-            configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
-            {
-                Type = OpenApiSecuritySchemeType.ApiKey,
-                Name = "Authorization",
-                In = OpenApiSecurityApiKeyLocation.Header,
-                Description = "Type into the textbox: Bearer {your JWT token}."
-            });
+            configure.AddSecurity("JWT", Enumerable.Empty<string>(),
+                new OpenApiSecurityScheme
+                {
+                    Type = OpenApiSecuritySchemeType.ApiKey,
+                    Name = "Authorization",
+                    In = OpenApiSecurityApiKeyLocation.Header,
+                    Description = "Type into the textbox: Bearer {your JWT token}."
+                });
 
             configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
         });
@@ -83,11 +84,9 @@ public class Startup
         app.UseRouting();
 
         app.UseAuthentication();
-        //app.UseIdentityServer();
         app.UseAuthorization();
         app.UseEndpoints(endpoints => endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller}/{action=Index}/{id?}"));
-
+            "default",
+            "{controller}/{action=Index}/{id?}"));
     }
 }

@@ -2,10 +2,7 @@
 using lighthouse_construction_progress_api.Application.Common.Interfaces;
 using lighthouse_construction_progress_api.Domain.Common;
 using lighthouse_construction_progress_api.Domain.Entities;
-using Duende.IdentityServer.EntityFramework.Options;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace lighthouse_construction_progress_api.Infrastructure.Persistence;
 

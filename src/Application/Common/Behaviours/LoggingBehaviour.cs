@@ -10,7 +10,7 @@ public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest> where T
     private readonly ICurrentUserService _currentUserService;
     
 
-    public LoggingBehaviour(ILogger logger, ICurrentUserService currentUserService)
+    public LoggingBehaviour(ILogger<TRequest> logger, ICurrentUserService currentUserService)
     {
         _logger = logger;
         _currentUserService = currentUserService;

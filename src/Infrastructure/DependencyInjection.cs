@@ -38,8 +38,7 @@ public static class DependencyInjection
 
         services.AddTransient<IDateTime, DateTimeService>();
 
-        services.AddAuthentication()
-            .AddIdentityServerJwt();
+        services.AddAuthentication();
 
         services.AddAuthorization(options => 
             options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator")));

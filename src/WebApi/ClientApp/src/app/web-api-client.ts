@@ -15,7 +15,7 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 export interface IWorkOrdersClient {
-    get(pageNumber: number | undefined, pageSize: number | undefined): Observable<PaginatedListOfWorkOrderDto>;
+    get(pageNumber: number | undefined, pageSize: number | undefined, activityNo: string | null | undefined): Observable<PaginatedListOfWorkOrderDto>;
     get2(id: number): Observable<WorkOrderDto>;
 }
 
@@ -32,7 +32,7 @@ export class WorkOrdersClient implements IWorkOrdersClient {
         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
     }
 
-    get(pageNumber: number | undefined, pageSize: number | undefined): Observable<PaginatedListOfWorkOrderDto> {
+    get(pageNumber: number | undefined, pageSize: number | undefined, activityNo: string | null | undefined): Observable<PaginatedListOfWorkOrderDto> {
         let url_ = this.baseUrl + "/api/WorkOrders?";
         if (pageNumber === null)
             throw new Error("The parameter 'pageNumber' cannot be null.");
@@ -42,6 +42,8 @@ export class WorkOrdersClient implements IWorkOrdersClient {
             throw new Error("The parameter 'pageSize' cannot be null.");
         else if (pageSize !== undefined)
             url_ += "PageSize=" + encodeURIComponent("" + pageSize) + "&";
+        if (activityNo !== undefined && activityNo !== null)
+            url_ += "ActivityNo=" + encodeURIComponent("" + activityNo) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -205,6 +207,7 @@ export interface IPaginatedListOfWorkOrderDto {
 }
 
 export class WorkOrderDto implements IWorkOrderDto {
+    id?: number;
     woNo?: string | undefined;
     activityNo?: string | undefined;
     description?: string | undefined;
@@ -227,6 +230,7 @@ export class WorkOrderDto implements IWorkOrderDto {
 
     init(_data?: any) {
         if (_data) {
+            this.id = _data["id"];
             this.woNo = _data["woNo"];
             this.activityNo = _data["activityNo"];
             this.description = _data["description"];
@@ -249,6 +253,7 @@ export class WorkOrderDto implements IWorkOrderDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
         data["woNo"] = this.woNo;
         data["activityNo"] = this.activityNo;
         data["description"] = this.description;
@@ -264,6 +269,7 @@ export class WorkOrderDto implements IWorkOrderDto {
 }
 
 export interface IWorkOrderDto {
+    id?: number;
     woNo?: string | undefined;
     activityNo?: string | undefined;
     description?: string | undefined;
