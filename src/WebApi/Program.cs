@@ -1,6 +1,4 @@
-using System.Diagnostics;
 using lighthouse_construction_progress_api.Infrastructure.Persistence;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace lighthouse_construction_progress_api.WebApi;
@@ -45,6 +43,10 @@ public class Program
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder => 
-                webBuilder.UseStartup<Startup>());
+            .ConfigureWebHostDefaults(webBuilder =>
+                webBuilder.UseKestrel(options =>
+                    {
+                        options.Limits.MaxRequestBodySize = null;
+                    })
+              .UseStartup<Startup>());
 }
