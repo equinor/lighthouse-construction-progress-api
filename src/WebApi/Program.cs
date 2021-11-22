@@ -48,7 +48,7 @@ public class Program
                     {
                         options.Limits.MaxRequestBodySize = null;
                        
-                        options.ListenAnyIP(5000);
+                        //options.ListenAnyIP(5000);
                     })
               .UseStartup<Startup>());
 }
