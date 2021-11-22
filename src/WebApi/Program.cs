@@ -47,6 +47,7 @@ public class Program
                 webBuilder.UseKestrel(options =>
                     {
                         options.Limits.MaxRequestBodySize = null;
+                        options.ListenAnyIP(5000);
                     })
               .UseStartup<Startup>());
 }
