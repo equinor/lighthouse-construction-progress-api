@@ -10,6 +10,13 @@ public static class ApplicationDbContextSeed
 {
     public static async Task SeedSampleDataAsync(ApplicationDbContext context)
     {
+
+        //if (!context.Activities.Any())
+        //{
+        //    await context.AddAsync(new Activity() { ActivityNo = "Test" });
+
+        //}
+
         // Seed, if necessary
         if (!context.WorkOrders.Any())
         {
