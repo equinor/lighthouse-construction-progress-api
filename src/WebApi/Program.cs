@@ -44,12 +44,10 @@ public class Program
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
-            webBuilder.UseStartup<Startup>());
-                //webBuilder.UseKestrel(options =>
-                    //{
-                       // options.Limits.MaxRequestBodySize = null;
-                       
-                     //   options.ListenAnyIP(5000);
-                   // })
-             // .UseStartup<Startup>());
+                webBuilder.UseKestrel(options =>
+                    {
+                        options.Limits.MaxRequestBodySize = null;
+                        options.ListenAnyIP(5000);
+                    })
+              .UseStartup<Startup>());
 }
