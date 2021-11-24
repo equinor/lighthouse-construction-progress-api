@@ -19,6 +19,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Activities.txt" />
+      <None Remove="Objects.txt" />
       <None Remove="TextFile1.txt" />
     </ItemGroup>
 
