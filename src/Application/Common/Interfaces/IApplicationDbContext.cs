@@ -9,5 +9,7 @@ public interface IApplicationDbContext
 
     DbSet<Activity> Activities { get; }
 
+    DbSet<LciObject> LciObjects { get; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

@@ -2,7 +2,7 @@
 
 public class WorkOrder
 {
-    public long Id { get; set; } 
+    public Guid Id { get; set; } 
 
     public string? WoNo  { get; set; }
 

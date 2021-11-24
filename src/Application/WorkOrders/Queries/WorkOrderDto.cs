@@ -6,7 +6,7 @@ namespace lighthouse_construction_progress_api.Application.WorkOrders.Queries;
 
 public class WorkOrderDto : IMapFrom<WorkOrder>
 {
-    public long Id { get; set; }
+    public Guid Id { get; set; }
     public string? WoNo  { get; set; }
 
     public string? ActivityNo { get; set; }

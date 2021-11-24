@@ -2,7 +2,7 @@
 
 public class Activity
 {
-    public long Id { get; set; }
+    public Guid Id { get; set; }
     public string? ActivityNo { get; set; }
     public string? Description { get; set; }
     public long Sequence { get; set; }

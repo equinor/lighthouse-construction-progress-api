@@ -13,7 +13,7 @@ namespace lighthouse_construction_progress_api.Application.WorkOrders.Queries;
 
 public class GetWorkOrderQuery : IRequest<WorkOrderDto>
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 }
 
 public class GetWorkOrderQueryHandler : IRequestHandler<GetWorkOrderQuery, WorkOrderDto>
