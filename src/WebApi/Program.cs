@@ -48,9 +48,9 @@ public class Program
                     .UseKestrel(options =>
                     {
                         options.Limits.MaxRequestBodySize = null;
-                        options.ListenAnyIP(5000);
-                        options.ListenLocalhost(5000);
-                        options.ListenLocalhost(5001,opt => opt.UseHttps());
+                        //options.ListenAnyIP(5000);
+                        //options.ListenLocalhost(5000);
+                        //options.ListenLocalhost(5001,opt => opt.UseHttps());
                     })
               .UseStartup<Startup>());
 }

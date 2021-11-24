@@ -303,6 +303,9 @@ namespace lighthouse_construction_progress_api.Infrastructure.Persistence.Migrat
                     b.Property<string>("ActionNo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ActivityName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ActivityNo")
                         .HasColumnType("nvarchar(max)");
 
@@ -315,14 +318,17 @@ namespace lighthouse_construction_progress_api.Infrastructure.Persistence.Migrat
                     b.Property<string>("Cable_T_Area")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Cable_T_Tag")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ComPkg")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("EstimatedQuantity")
-                        .HasColumnType("bigint");
+                    b.Property<double?>("EstimatedQuantity")
+                        .HasColumnType("float");
 
-                    b.Property<long?>("InstalledQuantity")
-                        .HasColumnType("bigint");
+                    b.Property<double?>("InstalledQuantity")
+                        .HasColumnType("float");
 
                     b.Property<string>("McPkg")
                         .HasColumnType("nvarchar(max)");
@@ -336,8 +342,8 @@ namespace lighthouse_construction_progress_api.Infrastructure.Persistence.Migrat
                     b.Property<string>("PipeTest")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("RemainingHours")
-                        .HasColumnType("bigint");
+                    b.Property<double?>("RemainingHours")
+                        .HasColumnType("float");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
@@ -345,7 +351,13 @@ namespace lighthouse_construction_progress_api.Infrastructure.Persistence.Migrat
                     b.Property<DateTime?>("StatusDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("StatusName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WorkOrderName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WorkOrderNo")
