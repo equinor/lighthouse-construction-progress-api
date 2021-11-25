@@ -6,6 +6,113 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/api/Activities": {
+      "get": {
+        "tags": [
+          "Activities"
+        ],
+        "operationId": "Activities_Get",
+        "parameters": [
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 2
+          },
+          {
+            "name": "ActivityNo",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 3
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedListOfActivityDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/LciObjects": {
+      "get": {
+        "tags": [
+          "LciObjects"
+        ],
+        "operationId": "LciObjects_Get",
+        "parameters": [
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 2
+          },
+          {
+            "name": "ActivityNo",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 3
+          },
+          {
+            "name": "WorkOrderNo",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 4
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedListOfLciObjectDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/WorkOrders": {
       "get": {
         "tags": [
@@ -90,6 +197,552 @@
   },
   "components": {
     "schemas": {
+      "PaginatedListOfActivityDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityDto"
+            }
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hasPreviousPage": {
+            "type": "boolean"
+          },
+          "hasNextPage": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ActivityDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "activityNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "sequence": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "netId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "f10": {
+            "type": "string",
+            "nullable": true
+          },
+          "r1Wbs": {
+            "type": "string",
+            "nullable": true
+          },
+          "r1Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r2MainCat": {
+            "type": "string",
+            "nullable": true
+          },
+          "r2Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r3Discipline": {
+            "type": "string",
+            "nullable": true
+          },
+          "r3Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r4MainArea": {
+            "type": "string",
+            "nullable": true
+          },
+          "r4Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r5SubArea": {
+            "type": "string",
+            "nullable": true
+          },
+          "r5Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r6System": {
+            "type": "string",
+            "nullable": true
+          },
+          "r6Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r7CommPk": {
+            "type": "string",
+            "nullable": true
+          },
+          "r7Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r8ProcurementPack": {
+            "type": "string",
+            "nullable": true
+          },
+          "r8Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r9Phase": {
+            "type": "string",
+            "nullable": true
+          },
+          "r9Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r10SubDiscipline": {
+            "type": "string",
+            "nullable": true
+          },
+          "r10Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r11Responsible": {
+            "type": "string",
+            "nullable": true
+          },
+          "r11Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r12ProjectMilestone": {
+            "type": "string",
+            "nullable": true
+          },
+          "r12Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r13ActivityRole": {
+            "type": "string",
+            "nullable": true
+          },
+          "r13Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r14ProjectPhase": {
+            "type": "string",
+            "nullable": true
+          },
+          "r14Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r15Fav": {
+            "type": "string",
+            "nullable": true
+          },
+          "r15Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r16Fas": {
+            "type": "string",
+            "nullable": true
+          },
+          "r16Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r17Pau": {
+            "type": "string",
+            "nullable": true
+          },
+          "r17Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r18Module": {
+            "type": "string",
+            "nullable": true
+          },
+          "r18Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r19SapWbs": {
+            "type": "string",
+            "nullable": true
+          },
+          "r19Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r20Contract": {
+            "type": "string",
+            "nullable": true
+          },
+          "r20Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r21SubSystem": {
+            "type": "string",
+            "nullable": true
+          },
+          "r21Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r22MaterialAllocationPhase": {
+            "type": "string",
+            "nullable": true
+          },
+          "r22Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r23ContractorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "r23Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r24CostCenterDepartment": {
+            "type": "string",
+            "nullable": true
+          },
+          "r24Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r25McPk": {
+            "type": "string",
+            "nullable": true
+          },
+          "r25Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r26TagTest": {
+            "type": "string",
+            "nullable": true
+          },
+          "r26Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r27SiteLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "r27Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r28WorkType": {
+            "type": "string",
+            "nullable": true
+          },
+          "r28Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r29JobDisc": {
+            "type": "string",
+            "nullable": true
+          },
+          "r29Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "r30PersonalSortField": {
+            "type": "string",
+            "nullable": true
+          },
+          "r30Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "du": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "tse": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "acs": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "es": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ef": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ls": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lf": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "onTarget": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "currentProgress": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "cancelled": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "jobPackEstimatedQuantity": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "expendedQuantity": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "esa": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "currentAs": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "currentAf": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "currentPlannedProgress": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "basePlannedProgress": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "bes": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "besa": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "bef": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "rsh": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "csh": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        }
+      },
+      "PaginatedListOfLciObjectDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LciObjectDto"
+            }
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hasPreviousPage": {
+            "type": "boolean"
+          },
+          "hasNextPage": {
+            "type": "boolean"
+          }
+        }
+      },
+      "LciObjectDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "objectNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "activityNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "activityName": {
+            "type": "string",
+            "nullable": true
+          },
+          "workOrderNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "workOrderName": {
+            "type": "string",
+            "nullable": true
+          },
+          "actionNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "statusName": {
+            "type": "string",
+            "nullable": true
+          },
+          "statusDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "workTypeNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "workTypeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "estimatedQuantity": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "installedQuantity": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "remainingHours": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "pipeTest": {
+            "type": "string",
+            "nullable": true
+          },
+          "mcPkg": {
+            "type": "string",
+            "nullable": true
+          },
+          "comPkg": {
+            "type": "string",
+            "nullable": true
+          },
+          "cable_F_Tag": {
+            "type": "string",
+            "nullable": true
+          },
+          "cable_F_Area": {
+            "type": "string",
+            "nullable": true
+          },
+          "cable_T_Tag": {
+            "type": "string",
+            "nullable": true
+          },
+          "cable_T_Area": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
       "PaginatedListOfWorkOrderDto": {
         "type": "object",
         "additionalProperties": false,

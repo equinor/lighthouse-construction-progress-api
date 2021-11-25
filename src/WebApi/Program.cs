@@ -26,7 +26,9 @@ public class Program
                 //var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
                 //await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager, roleManager);
-                await ApplicationDbContextSeed.SeedSampleDataAsync(context);
+
+                //uncomment to seed from textfiles
+              //  await ApplicationDbContextSeed.SeedSampleDataAsync(context);
             }
             catch (Exception ex)
             {
@@ -48,9 +50,6 @@ public class Program
                     .UseKestrel(options =>
                     {
                         options.Limits.MaxRequestBodySize = null;
-                        //options.ListenAnyIP(5000);
-                        //options.ListenLocalhost(5000);
-                        //options.ListenLocalhost(5001,opt => opt.UseHttps());
                     })
               .UseStartup<Startup>());
 }

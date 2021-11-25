@@ -68,26 +68,26 @@ public class Activity
     public string? R29Description { get; set; }
     public string? R30PersonalSortField { get; set; }
     public string? R30Description { get; set; }
-    public string? Du { get; set; }
-    public string? Tse { get; set; }
-    public string? Acs { get; set; }
-    public string? Es { get; set; }
-    public string? Ef { get; set; }
-    public string? Ls { get; set; }
-    public string? Lf { get; set; }
-    public string? OnTarget { get; set; }
-    public string? CurrentProgress { get; set; }
-    public string? Cancelled { get; set; }
-    public string? JobPackEstimatedQuantity { get; set; }
-    public string? ExpendedQuantity { get; set; }
-    public string? Esa { get; set; }
-    public string? CurrentAs { get; set; }
-    public string? CurrentAf { get; set; }
-    public string? CurrentPlannedProgress { get; set; }
-    public string? BasePlannedProgress { get; set; }
-    public string? Bes { get; set; }
-    public string? Besa { get; set; }
-    public string? Bef { get; set; }
-    public string? Rsh { get; set; }
-    public string? Csh { get; set; }
+    public double? Du { get; set; }
+    public DateTime? Tse { get; set; }
+    public DateTime? Acs { get; set; }
+    public DateTime? Es { get; set; }
+    public DateTime? Ef { get; set; }
+    public DateTime? Ls { get; set; }
+    public DateTime? Lf { get; set; }
+    public double? OnTarget { get; set; }
+    public double? CurrentProgress { get; set; }
+    public DateTime? Cancelled { get; set; }
+    public double? JobPackEstimatedQuantity { get; set; }
+    public double? ExpendedQuantity { get; set; }
+    public DateTime? Esa { get; set; }
+    public DateTime? CurrentAs { get; set; }
+    public DateTime? CurrentAf { get; set; }
+    public double? CurrentPlannedProgress { get; set; }
+    public double? BasePlannedProgress { get; set; }
+    public DateTime? Bes { get; set; }
+    public DateTime? Besa { get; set; }
+    public DateTime? Bef { get; set; }
+    public double? Rsh { get; set; }
+    public double? Csh { get; set; }
 }
