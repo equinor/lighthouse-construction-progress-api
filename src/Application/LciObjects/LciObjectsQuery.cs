@@ -32,7 +32,7 @@ public class LciObjectsQueryHandler : IRequestHandler<LciObjectsQuery, Paginated
         IQueryable<LciObject> contextLciObjects = _context.LciObjects.AsQueryable();
         if (request.ActivityNo != null)
         {
-            contextLciObjects = contextLciObjects.Where(ob => ob.ActionNo == request.ActivityNo);
+            contextLciObjects = contextLciObjects.Where(ob => ob.ActivityNo == request.ActivityNo);
         }
 
         if (request.WorkOrderNo != null)
